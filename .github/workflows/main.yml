@@ -2,9 +2,12 @@ name: CICD
 
 on:
   workflow_dispatch:
-    branches: [main]
+    branches:
+      - main
   push:
-    branches: [main]
+    branches:
+      - main
+      - "move-reading-to-rust"
 
 jobs:
   lint-build-deploy:
