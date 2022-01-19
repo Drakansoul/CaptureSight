@@ -201,7 +201,7 @@ $(OUTPUT).ovl		:	$(OUTPUT).elf $(OUTPUT).nacp
 	@elf2nro $< $@ $(NROFLAGS)
 	@echo "built ... $(notdir $(OUTPUT).ovl)"
 
-$(OUTPUT).elf	:	$(OFILES) $(RUST_LIB) $(DMNTCHT_LIB)
+$(OUTPUT).elf	:	$(OFILES) $(DMNTCHT_LIB) $(RUST_LIB)
 
 $(OFILES_SRC)	: $(HFILES_BIN)
 
