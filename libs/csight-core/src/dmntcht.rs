@@ -10,9 +10,26 @@ pub struct DmntChtMemoryBase {
     pub heap: u64,
 }
 
+#[cfg(target_os = "horizon")]
 extern "C" {
     fn dmntchtMemoryBase(base: *mut DmntChtMemoryBase) -> NxResultCode;
     fn dmntchtReadCheatProcessMemory(address: u64, buffer: *mut u8, size: usize) -> NxResultCode;
+}
+
+#[cfg(not(target_os = "horizon"))]
+#[allow(non_snake_case)]
+unsafe fn dmntchtMemoryBase(_base: *mut DmntChtMemoryBase) -> NxResultCode {
+    0
+}
+
+#[cfg(not(target_os = "horizon"))]
+#[allow(non_snake_case)]
+unsafe fn dmntchtReadCheatProcessMemory(
+    _address: u64,
+    _buffer: *mut u8,
+    _size: usize,
+) -> NxResultCode {
+    0
 }
 
 fn parse_nx_result_code(result_code: NxResultCode) -> NxResult<()> {
